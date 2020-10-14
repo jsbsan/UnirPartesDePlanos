@@ -1,0 +1,4 @@
+TituloProyectoA3.png|1432|3308
+NombreFirma.png|2462|3405
+CuadroEscala.png|3081|3320
+CuadroFecha.png|3452|3325

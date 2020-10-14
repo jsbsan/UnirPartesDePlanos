@@ -1,0 +1,5 @@
+' Gambas class file
+
+Public nombre As String
+Public x As Integer
+Public y As Integer

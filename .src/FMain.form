@@ -1,0 +1,60 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,125,94)
+  { Label3 Label
+    MoveScaled(5,2,41,4)
+    Text = ("Elegir ruta donde estan los planos de fondos:")
+  }
+  { TextAreaPorcionesPontaje TextArea
+    MoveScaled(5,27,72,15)
+  }
+  { Label4 Label
+    MoveScaled(5,23,38,3)
+    Text = ("Montaje: png, x, y ")
+  }
+  { TextBoxRutaEntrada TextBox
+    MoveScaled(46,2,53,4)
+  }
+  { ButtonElegirDirectorioEntrada Button
+    MoveScaled(101,1,7,6)
+    Picture = Picture["icon:/32/directory"]
+  }
+  { ButtonOperar Button
+    MoveScaled(85,31,34,9)
+    Text = ("realizar el montaje")
+    Picture = Picture["icon:/32/exec"]
+  }
+  { Label1 Label
+    MoveScaled(5,8,41,5)
+    Text = ("Elegir Ruta de salida de montajes:")
+  }
+  { TextBoxRutaSalida TextBox
+    MoveScaled(46,8,53,5)
+  }
+  { ButtonElegirDirectorioSalida Button
+    MoveScaled(101,8,7,6)
+    Picture = Picture["icon:/32/directory"]
+  }
+  { Separator1 Separator
+    MoveScaled(0,6,125,2)
+  }
+  { Separator2 Separator
+    MoveScaled(0,14,125,2)
+  }
+  { Label2 Label
+    MoveScaled(5,17,41,5)
+    Text = ("Elegir Ruta Porciona Montajes:")
+  }
+  { TextBoxRutaMontaje TextBox
+    MoveScaled(46,17,53,5)
+  }
+  { ButtonElegirDirectorioMontaje Button
+    MoveScaled(101,16,7,6)
+    Picture = Picture["icon:/32/directory"]
+  }
+  { TextAreaComentarios TextArea
+    MoveScaled(3,49,114,42)
+    Font = Font["-2"]
+  }
+}

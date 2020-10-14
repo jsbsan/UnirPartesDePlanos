@@ -1,0 +1,111 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+  TextAreaPorcionesPontaje.text = File.Load("DATOS.TXT")
+
+End
+
+''como programar union de ficheros graficos
+'   Dim im1, im2 As Image
+'
+'   im1 = Picture["plano/18 maquinaria grup_1.png"].Image
+'   im2 = Picture["plano/cuadronombreproyecto.png"].Image
+'
+'   im2 = im2.Opacity(1)
+'
+'   With paint
+'     .Begin(im1)
+'     .DrawImage(im2, 482, 1100, im2.W, im2.H) 'indicar las coordendas donde ponerla
+'     .End
+'   End With
+'
+'   im1.Save("/tmp/union.png", 100)
+'   PictureBox1.Picture = Picture["/tmp/union.png"]
+
+Public Sub ButtonElegirDirectorioEntrada_Click()
+
+  If Dialog.SelectDirectory() Then Return
+
+  TextBoxRutaEntrada.text = Dialog.Path
+
+End
+
+Public Sub ButtonElegirDirectorioSalida_Click()
+
+  If Dialog.SelectDirectory() Then Return
+
+  TextBoxRutaSalida.text = Dialog.Path
+
+End
+
+Public Sub ButtonOperar_Click()
+
+  Dim fileName As String
+
+  Dim ArrayPorcion As New Porcion[]
+  Dim lineas As String[]
+  Dim p As String[]
+  Dim CaracterSeparador As String
+  Dim porciontmp As Porcion
+  Dim a As Integer
+
+  Dim ImagenFondo As Image
+  Dim imagenTmp As Image
+  ''-----------------------------
+  ''leo las porciones
+  ''-----------------------------
+  lineas = Split(TextAreaPorcionesPontaje.text, gb.CrLf)
+  CaracterSeparador = "|" 'tabulador como caracter de seprracaion de datos
+
+  For a = 0 To lineas.count - 1
+    p = Split(lineas[a], CaracterSeparador)
+
+    If p.count > 1 Then
+      porciontmp = New Porcion
+
+      porciontmp.nombre = p[0]
+      porciontmp.x = Val(p[1])
+      porciontmp.y = Val(p[2])
+
+      ArrayPorcion.Add(porciontmp)
+    Endif
+
+  Next
+
+  '---------------------------
+  'empiezo el montaje
+  '---------------------------
+  TextAreaComentarios.tex = ""
+
+  For Each fileName In Dir(TextBoxRutaEntrada.text)
+    TextAreaComentarios.text &= "Entrada: " & TextBoxRutaEntrada.text &/ fileName & "\n"
+
+    If Upper$(File.Ext(filename)) <> Upper$("png") Then Continue '' NO ES UN ARCHIVO DE FONDO DE IMAGEN QUE NOS SIRVA
+
+    ImagenFondo = Picture[TextBoxRutaEntrada.text &/ fileName].Image
+
+    Paint.Begin(ImagenFondo)
+    'empiezo a dibujar las porciones
+    For Each porciontmp In ArrayPorcion
+      imagenTmp = Picture[porciontmp.nombre].Image
+      imagenTmp = imagenTmp.Opacity(1)
+      paint.DrawImage(imagenTmp, porciontmp.x, porciontmp.y, imagenTmp.W, imagenTmp.H)
+    Next
+
+    paint.End
+
+    ImagenFondo.Save(TextBoxRutaSalida.text &/ File.BaseName(fileName) & "_mont.png", 100)
+    'poner de fondo, y con los datos del montaje, hacer el montaje, guardando el resultado en el directorio de salida
+    TextAreaComentarios.text &= "Salida: " & TextBoxRutaSalida.text &/ File.BaseName(fileName) & "_mont.png" & "\n"
+  Next
+
+End
+
+Public Sub ButtonElegirDirectorioMontaje_Click()
+
+  If Dialog.SelectDirectory() Then Return
+
+  TextBoxRutaMontaje.text = Dialog.Path
+
+End
