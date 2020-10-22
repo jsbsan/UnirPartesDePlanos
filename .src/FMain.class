@@ -27,7 +27,7 @@ Public Sub ButtonElegirDirectorioEntrada_Click()
 
   If Dialog.SelectDirectory() Then Return
 
-  TextBoxRutaEntrada.text = Dialog.Path
+  TextboxEntradaPlanos.text = Dialog.Path
 
 End
 
@@ -76,19 +76,19 @@ Public Sub ButtonOperar_Click()
   '---------------------------
   'empiezo el montaje
   '---------------------------
-  TextAreaComentarios.tex = ""
+  TextAreaComentarios.texT = ""
 
-  For Each fileName In Dir(TextBoxRutaEntrada.text)
-    TextAreaComentarios.text &= "Entrada: " & TextBoxRutaEntrada.text &/ fileName & "\n"
+  For Each fileName In Dir(TextboxEntradaPlanos.text)
+    TextAreaComentarios.text &= "Entrada: " & TextboxEntradaPlanos.text &/ fileName & "\n"
 
     If Upper$(File.Ext(filename)) <> Upper$("png") Then Continue '' NO ES UN ARCHIVO DE FONDO DE IMAGEN QUE NOS SIRVA
 
-    ImagenFondo = Picture[TextBoxRutaEntrada.text &/ fileName].Image
+    ImagenFondo = Picture[TextboxEntradaPlanos.text &/ fileName].Image
 
     Paint.Begin(ImagenFondo)
     'empiezo a dibujar las porciones
     For Each porciontmp In ArrayPorcion
-      imagenTmp = Picture[porciontmp.nombre].Image
+      imagenTmp = Picture[TextBoxRutaMontaje.text &/ porciontmp.nombre].Image
       imagenTmp = imagenTmp.Opacity(1)
       paint.DrawImage(imagenTmp, porciontmp.x, porciontmp.y, imagenTmp.W, imagenTmp.H)
     Next
@@ -107,5 +107,38 @@ Public Sub ButtonElegirDirectorioMontaje_Click()
   If Dialog.SelectDirectory() Then Return
 
   TextBoxRutaMontaje.text = Dialog.Path
+
+End
+
+Public Sub ButtonGuardar_Click()
+
+  Dim contenido As String
+
+  If Not Dialog.SaveFile() Then
+    contenido = TextboxEntradaPlanos.text & "\n"
+    contenido &= TextBoxRutaSalida.text & "\n"
+    contenido &= TextBoxRutaMontaje.text & "\n"
+    contenido &= TextAreaPorcionesPontaje.text
+
+    File.Save(Dialog.Path, contenido)
+  Endif
+
+End
+
+Public Sub ButtonGuardar2_Click()
+
+  Dim Arraycontenido As String[]
+
+  If Not Dialog.OpenFile() Then
+
+    ArrayContenido = Split(File.Load(Dialog.Path), "\n")
+
+    TextboxEntradaPlanos.text = ArrayContenido[0]
+    TextBoxRutaSalida.text = ArrayContenido[1]
+    TextBoxRutaMontaje.text = ArrayContenido[2]
+    Arraycontenido.Delete(0, 3)
+    TextAreaPorcionesPontaje.text = ArrayContenido.Join("\n")
+
+  Endif
 
 End

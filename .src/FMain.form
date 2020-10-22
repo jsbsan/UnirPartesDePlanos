@@ -2,6 +2,7 @@
 
 { Form Form
   MoveScaled(0,0,125,94)
+  Icon = Picture["UnirPartes.png"]
   { Label3 Label
     MoveScaled(5,2,41,4)
     Text = ("Elegir ruta donde estan los planos de fondos:")
@@ -10,18 +11,19 @@
     MoveScaled(5,27,72,15)
   }
   { Label4 Label
-    MoveScaled(5,23,38,3)
-    Text = ("Montaje: png, x, y ")
+    MoveScaled(5,23,70,3)
+    Text = ("Montaje: fichero.png | x | y  (Se usa la barra vertical para separar datos (|)")
   }
-  { TextBoxRutaEntrada TextBox
+  { TextboxEntradaPlanos TextBox
     MoveScaled(46,2,53,4)
+    Text = ("/home/hdd/home/mint/Documentos/00 Trabajos/Cuarentena Trabajo/00 Proyectos/16 Compuertas Peñaflor/01 en redacción/01 MEMORIA/03 SyS/DOC 02 PLANOS")
   }
   { ButtonElegirDirectorioEntrada Button
     MoveScaled(101,1,7,6)
     Picture = Picture["icon:/32/directory"]
   }
   { ButtonOperar Button
-    MoveScaled(85,31,34,9)
+    MoveScaled(86,24,34,9)
     Text = ("realizar el montaje")
     Picture = Picture["icon:/32/exec"]
   }
@@ -31,6 +33,7 @@
   }
   { TextBoxRutaSalida TextBox
     MoveScaled(46,8,53,5)
+    Text = ("/home/minino/PDF")
   }
   { ButtonElegirDirectorioSalida Button
     MoveScaled(101,8,7,6)
@@ -48,6 +51,7 @@
   }
   { TextBoxRutaMontaje TextBox
     MoveScaled(46,17,53,5)
+    Text = ("/home/hdd/home/mint/Documentos/00 Trabajos/Cuarentena Trabajo/00 Proyectos/16 Compuertas Peñaflor/01 en redacción/01 MEMORIA/03 SyS/DOC 02 PLANOS")
   }
   { ButtonElegirDirectorioMontaje Button
     MoveScaled(101,16,7,6)
@@ -56,5 +60,15 @@
   { TextAreaComentarios TextArea
     MoveScaled(3,49,114,42)
     Font = Font["-2"]
+  }
+  { ButtonGuardar Button
+    MoveScaled(86,39,35,4)
+    Text = ("Guardar configuración de montaje")
+    Picture = Picture["icon:/22/save"]
+  }
+  { ButtonGuardar2 Button
+    MoveScaled(86,34,35,4)
+    Text = ("Abrir configuración de montaje")
+    Picture = Picture["icon:/22/open"]
   }
 }
