@@ -58,7 +58,7 @@
     Picture = Picture["icon:/32/directory"]
   }
   { TextAreaComentarios TextArea
-    MoveScaled(3,49,114,42)
+    MoveScaled(4,46,116,46)
     Font = Font["-2"]
   }
   { ButtonGuardar Button
